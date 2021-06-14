@@ -65,8 +65,6 @@ Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_
 Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete_category_product');
 Route::get('/all-category-product','CategoryProduct@all_category_product');
 
-Route::post('/export-csv','CategoryProduct@export_csv');
-Route::post('/import-csv','CategoryProduct@import_csv');
 
 Route::post('/arrange-category','CategoryProduct@arrange_category');
 
@@ -76,24 +74,20 @@ Route::get('/active-category-product/{category_product_id}','CategoryProduct@act
 Route::post('/product-tabs','CategoryProduct@product_tabs');
 
 
-//Login facebook
-Route::get('/login-facebook','AdminController@login_facebook');
-Route::get('/admin/callback','AdminController@callback_facebook');
-
-Route::get('/login-facebook-customer','AdminController@login_facebook_customer');
-Route::get('/customer/facebook/callback','AdminController@callback_facebook_customer');
-
-//Login google
-Route::get('/login-google','AdminController@login_google');
-Route::get('/google/callback','AdminController@callback_google');
-
-//login customer by google
-Route::get('/login-customer-google','AdminController@login_customer_google');
-Route::get('/customer/google/callback','AdminController@callback_customer_google');
-
-
 Route::post('/save-category-product','CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}','CategoryProduct@update_category_product');
+
+
+//Video
+Route::get('video','VideoController@video');
+Route::get('video-shop','VideoController@video_shop');
+Route::post('select-video','VideoController@select_video');
+Route::post('insert-video','VideoController@insert_video');
+Route::post('update-video','VideoController@update_video');
+Route::post('delete-video','VideoController@delete_video');
+Route::post('update-video-image','VideoController@update_video_image');
+Route::post('watch-video','VideoController@watch_video');
+Route::get('all-video','VideoController@all_video');
 
 //Brand Product
 Route::get('/add-brand-product','BrandProduct@add_brand_product');
@@ -179,7 +173,7 @@ Route::post('/add-customer','CheckoutController@add_customer');
 Route::post('/order-place','CheckoutController@order_place');
 Route::post('/login-customer','CheckoutController@login_customer');
 Route::get('/checkout','CheckoutController@checkout');
-Route::get('/payment','CheckoutController@payment');
+// Route::get('/payment','CheckoutController@payment');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
 Route::post('/calculate-fee','CheckoutController@calculate_fee');
 Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
@@ -203,13 +197,6 @@ Route::post('/insert-delivery','DeliveryController@insert_delivery');
 Route::post('/select-feeship','DeliveryController@select_feeship');
 Route::post('/update-delivery','DeliveryController@update_delivery');
 
-//Banner
-// Route::get('/manage-slider','SliderController@manage_slider');
-// Route::get('/add-slider','SliderController@add_slider');
-// Route::get('/delete-slide/{slide_id}','SliderController@delete_slide');
-// Route::post('/insert-slider','SliderController@insert_slider');
-// Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
-// Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 //Authentication roles
 Route::get('/register-auth','AuthController@register_auth');
@@ -226,21 +213,6 @@ Route::post('insert-gallery/{pro_id}','GalleryController@insert_gallery');
 Route::post('update-gallery-name','GalleryController@update_gallery_name');
 Route::post('delete-gallery','GalleryController@delete_gallery');
 Route::post('update-gallery','GalleryController@update_gallery');
-
-
-//Video
-Route::get('video','VideoController@video');
-Route::get('video-shop','VideoController@video_shop');
-Route::post('select-video','VideoController@select_video');
-Route::post('insert-video','VideoController@insert_video');
-Route::post('update-video','VideoController@update_video');
-Route::post('delete-video','VideoController@delete_video');
-Route::post('update-video-image','VideoController@update_video_image');
-Route::post('watch-video','VideoController@watch_video');
-Route::get('all-video','VideoController@all_video');
-
-
-
 
 
 //Document
@@ -261,12 +233,7 @@ Route::get('list_document','DocumentController@list_document');
 Route::get('read_data','DocumentController@read_data');
 
 //Send Mail 
-Route::get('/send-coupon-vip/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}','MailController@send_coupon_vip');
-Route::get('/send-coupon/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}','MailController@send_coupon');
 
-Route::get('/mail-example','MailController@mail_example');
-
-Route::get('/send-mail','MailController@send_mail');
 Route::get('/quen-mat-khau','MailController@quen_mat_khau');
 Route::get('/update-new-pass','MailController@update_new_pass');
 Route::post('/recover-pass','MailController@recover_pass');

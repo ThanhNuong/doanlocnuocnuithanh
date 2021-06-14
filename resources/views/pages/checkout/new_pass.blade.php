@@ -19,7 +19,7 @@
 						$token = $_GET['token'];
 						$email = $_GET['email'];
 					@endphp
-					<h2>Điền mật khẩu mới</h2>
+					<h2>Nhập mật khẩu mới</h2>
 					<form action="{{url('/reset-new-pass')}}" method="POST">
 						@csrf
 						<input type="hidden" name="email" value="{{$email}}"/>

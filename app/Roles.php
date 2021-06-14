@@ -13,6 +13,7 @@ class Roles extends Model
     protected $primaryKey = 'id_roles';
  	protected $table = 'tbl_roles';
 
+	 // roles trong nhiều admin
  	public function admin(){
  		return $this->belongsToMany('App\Admin');
  	}

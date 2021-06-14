@@ -15,7 +15,7 @@
 				</div>
 				@endif
 				<div class="login-form"><!--login form-->
-					<h2>Điền email để lấy lại mật khẩu</h2>
+					<h2>Nhập email để lấy lại mật khẩu</h2>
 					<form action="{{url('/recover-pass')}}" method="POST">
 						@csrf
 						<input type="text" name="email_account" placeholder="Nhập email..." />

@@ -5,7 +5,7 @@
         <div class="panel-heading">
             Liệt kê danh mục sản phẩm
         </div>
-        
+
         <div class="table-responsive">
             <?php
                             $message = Session::get('message');
@@ -17,7 +17,7 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                        
+                        <th>Thứ tự</th>
                         <th>Tên danh mục</th>
                         <th>Thuộc danh mục</th>
                         <th>Slug</th>
@@ -39,8 +39,16 @@
 
                 <tbody id="category_order">
 
+                    @php
+                    $i = 0;
+                    @endphp
                     @foreach($all_category_product as $key => $cate_pro)
+                    @php
+                    $i++;
+                    @endphp
+
                     <tr id="{{$cate_pro->category_id}}">
+                        <td><i>{{$i}}</i></label></td>
                         <td>{{ $cate_pro->category_name }}</td>
                         <td>
                             @if($cate_pro->category_parent==0)
@@ -88,20 +96,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <!-----import data---->
-            <form action="{{url('import-csv')}}" method="POST" enctype="multipart/form-data">
-                @csrf
 
-                <input type="file" name="file" accept=".xlsx"><br>
-
-                <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
-            </form>
-
-            <!-----export data---->
-            <form action="{{url('export-csv')}}" method="POST">
-                @csrf
-                <input type="submit" value="Export file Excel" name="export_csv" class="btn btn-success">
-            </form>
 
 
         </div>

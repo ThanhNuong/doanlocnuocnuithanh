@@ -22,7 +22,7 @@ class DeliveryController extends Controller
 		$feeship = Feeship::orderby('fee_id','DESC')->get();
 		$output = '';
 		$output .= '<div class="table-responsive">  
-			<table class="table table-bordered">
+			<table id="feeship" class="table table-bordered feeship">
 				<thread> 
 					<tr>
 						<th>Tên thành phố</th>
@@ -68,7 +68,7 @@ class DeliveryController extends Controller
 
     	$city = City::orderby('matp','ASC')->get();
 
-    	return view('admin.delivery.add_delivery')->with(compact('city'));
+    	return view('admin.vanchuyen.add_vanchuyen')->with(compact('city'));
     }
     public function select_delivery(Request $request){
     	$data = $request->all();

@@ -42,7 +42,9 @@ class AppServiceProvider extends ServiceProvider
             $app_customer = Customer::all()->count();
             $share_image = '';
 
-            $view->with('min_price', $min_price )->with('max_price', $max_price )->with('min_price_range', $min_price_range )->with('max_price_range', $max_price_range )->with('app_product', $app_product )->with('app_post', $app_post )->with('app_order', $app_order )->with('app_video', $app_video )->with('app_customer', $app_customer )->with('share_image',$share_image);
+            $view->with('min_price', $min_price )->with('max_price', $max_price )->with('min_price_range', $min_price_range )
+            ->with('max_price_range', $max_price_range )->with('app_product', $app_product )->with('app_post', $app_post )
+            ->with('app_order', $app_order )->with('app_video', $app_video )->with('app_customer', $app_customer )->with('share_image',$share_image);
 
         });
     }

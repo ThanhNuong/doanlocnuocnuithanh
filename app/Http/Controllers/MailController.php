@@ -18,76 +18,10 @@ use App\Product;
 class MailController extends Controller
 {
 
-	public function send_coupon($coupon_time,$coupon_condition,$coupon_number,$coupon_code){
-		//get customer
-		$customer = Customer::where('customer_vip','=',NULL)->get();
-
-		$coupon = Coupon::where('coupon_code',$coupon_code)->first();
-		$start_coupon = $coupon->coupon_date_start;
-		$end_coupon = $coupon->coupon_date_end;
-
-		$now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
-
-		$title_mail = "Mã khuyến mãi ngày".' '.$now;
-		
-		$data = [];
-		foreach($customer as $normal){
-			$data['email'][] = $normal->customer_email;
-		}
-		$coupon = array(
-			
-			'start_coupon' =>$start_coupon,
-			'end_coupon' =>$end_coupon,
-			'coupon_time' => $coupon_time,
-			'coupon_condition' => $coupon_condition,
-			'coupon_number' => $coupon_number,
-			'coupon_code' => $coupon_code
-		);
-		Mail::send('pages.send_coupon',  ['coupon'=>$coupon] , function($message) use ($title_mail,$data){
-	            $message->to($data['email'])->subject($title_mail);//send this mail with subject
-	            $message->from($data['email'],$title_mail);//send from this mail
-	    });
-  
-		 return redirect()->back()->with('message','Gửi mã khuyến mãi khách thường thành công');
-    }
-
-	public function send_coupon_vip($coupon_time,$coupon_condition,$coupon_number,$coupon_code){
-		//get customer
-		$customer_vip = Customer::where('customer_vip',1)->get();
-
-		$coupon = Coupon::where('coupon_code',$coupon_code)->first();
-		$start_coupon = $coupon->coupon_date_start;
-		$end_coupon = $coupon->coupon_date_end;
-
-		$now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
-
-		$title_mail = "Mã khuyến mãi ngày".' '.$now;
-		
-		$data = [];
-		foreach($customer_vip as $vip){
-				$data['email'][] = $vip->customer_email;
-		}
-		$coupon = array(
-			'start_coupon' =>$start_coupon,
-			'end_coupon' =>$end_coupon,
-			'coupon_time' => $coupon_time,
-			'coupon_condition' => $coupon_condition,
-			'coupon_number' => $coupon_number,
-			'coupon_code' => $coupon_code
-		);
-		
-		Mail::send('pages.send_coupon_vip', ['coupon' => $coupon] , function($message) use ($title_mail,$data){
-	            $message->to($data['email'])->subject($title_mail);//send this mail with subject
-	            $message->from($data['email'],$title_mail);//send from this mail
-	    });
-	    
-  
-		return redirect()->back()->with('message','Gửi mã khuyến mãi khách vip thành công');
-    }
     public function recover_pass(Request $request){
     	$data = $request->all();
 		$now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
-		$title_mail = "Lấy lại mật khẩu hieutantutorial.com".' '.$now;
+		$title_mail = "Lấy lại mật khẩu";
 		$customer = Customer::where('customer_email','=',$data['email_account'])->get();
 		foreach($customer as $key => $value){
 			$customer_id = $value->customer_id;
@@ -114,7 +48,7 @@ class MailController extends Controller
 		            $message->from($data['email'],$title_mail);//send from this mail
 	    		});
                 //--send mail
-                return redirect()->back()->with('message', 'Gửi mail thành công,vui lòng vào email để reset password');
+                return redirect()->back()->with('message', 'Gửi mail thành công,vui lòng vào email để lấy lại mât khẩu');
             }
         }
     }
@@ -158,9 +92,6 @@ class MailController extends Controller
         $cate_pro_tabs = CategoryProductModel::where('category_parent','<>',0)->orderBy('category_order','ASC')->get();
 
     	return view('pages.checkout.new_pass')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs); //1
-    }
-    public function mail_example(){
-    	return view('pages.send_coupon_vip');
     }
    
     public function mail_order(){

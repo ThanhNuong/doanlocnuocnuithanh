@@ -11,6 +11,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+        //truncate: khi phát hiện có csdl => xóa tất cả các csdl trong table roles đó
         Roles::truncate();
 
         Roles::create(['name'=>'admin']);

@@ -22,18 +22,13 @@
                         {{csrf_field()}}
                         <input type="text" name="email_account" placeholder="Tài khoản" />
                         <input type="password" name="password_account" placeholder="Password" />
-                        <!-- <span>
-								<input type="checkbox" class="checkbox"> 
-								Ghi nhớ đăng nhập
-							</span>
-							<span>
-								<a href="{{url('/quen-mat-khau')}}">Quên mật khẩu</a>
-							</span> -->
+                        
+                        <span>
+                            <a href="{{url('/quen-mat-khau')}}">Quên mật khẩu</a>
+                        </span>
                         <button type="submit" class="btn btn-default">Đăng nhập</button>
 
                     </form>
-
-
 
 
                 </div>
@@ -46,10 +41,18 @@
                         <h2>Đăng ký</h2>
                         <form action="{{URL::to('/add-customer')}}" method="POST">
                             {{ csrf_field() }}
-                            <input type="text"  data-validation="length" data-validation-length="min1" data-validation-error-msg="Nhập họ và tên" name="customer_name" placeholder="Họ và tên" />
-                            <input type="email"  data-validation="length" data-validation-length="min1" data-validation-error-msg="Nhập địa chỉ email" name="customer_email" placeholder="Địa chỉ email" />
-                            <input type="password" data-validation="length" data-validation-length="min1" data-validation-error-msg="Nhập mật khẩu" name="customer_password" placeholder="Mật khẩu" />
-                            <input type="text"  data-validation="length" data-validation-length="min1" data-validation-error-msg="Nhập số điện thoại" name="customer_phone" placeholder="Phone" />
+                            <input type="text" data-validation="length" data-validation-length="min1"
+                                data-validation-error-msg="Nhập họ và tên" name="customer_name"
+                                placeholder="Họ và tên" />
+                            <input type="email" data-validation="length" data-validation-length="min1"
+                                data-validation-error-msg="Nhập địa chỉ email" name="customer_email"
+                                placeholder="Địa chỉ email" />
+                            <input type="password" data-validation="length" data-validation-length="min1"
+                                data-validation-error-msg="Nhập mật khẩu" name="customer_password"
+                                placeholder="Mật khẩu" />
+                            <input type="text" data-validation="length" data-validation-length="min1"
+                                data-validation-error-msg="Nhập số điện thoại" name="customer_phone"
+                                placeholder="Phone" />
                             <button type="submit" class="btn btn-default">Đăng ký</button>
                         </form>
                     </div>

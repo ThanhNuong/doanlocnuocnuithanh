@@ -11,7 +11,7 @@
     <link  rel="canonical" href="{{$url_canonical}}" />
     <meta name="author" content="">
     <link  rel="icon" type="image/x-icon" href="" />
-
+    
 
     <title>{{$meta_title}}</title>
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -32,8 +32,17 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@200&family=Lato:ital,wght@0,300;1,300&family=Nunito+Sans:wght@300&family=Oswald:wght@300&family=Poppins:wght@200&family=Source+Sans+Pro:ital@1&display=swap" rel="stylesheet">
+    
+  
+  <!---------------------video call---------------------------------->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"/> -->
+    <!-- <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}" />
+  <link rel="stylesheet" href="{{asset('public/frontend/css/bulma.min.css')}}" /> 
+    <script src="{{asset('public/frontend/js/peer.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script> -->
 
-
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="{{asset('public/frontend/js/sender.js')}}"></script>
 
      <!------------Share fb------------------>
     <meta property="og:url"                content="{{$url_canonical}}" />
@@ -47,8 +56,10 @@
 
 <body>
 
-    <header id="header"><!--header-->
-        <div class="header_top"><!--header_top-->
+<header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
@@ -62,15 +73,18 @@
 
                 </div>
             </div>
-        </div><!--/header_top-->
+        </div>
+        <!--/header_top-->
 
-        <div class="header-middle"><!--header-middle-->
+        <div class="header-middle">
+            <!--header-middle-->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                    <div class="logo pull-left">
+                        <div class="logo pull-left">
                             <a href="{{URL::to('/trang-chu')}}"><img
-                                    src="{{url('/public/frontend/images/logo-karofi-2021-01.png')}}" alt="Lọc nước logo" /></a>
+                                    src="{{url('/public/frontend/images/logo-karofi-2021-01.png')}}"
+                                    alt="Lọc nước logo" /></a>
                         </div>
 
                     </div>
@@ -84,73 +98,80 @@
                                    $shipping_id = Session::get('shipping_id');
                                    if($customer_id!=NULL && $shipping_id==NULL){
                                  ?>
-                                  <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                </li>
 
                                 <?php
                                  }elseif($customer_id!=NULL && $shipping_id!=NULL){
                                  ?>
-                                 <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                 <?php
+                                <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                </li>
+                                <?php
                                 }else{
                                 ?>
-                                 <li><a href="{{URL::to('/dang-nhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                <li><a href="{{URL::to('/dang-nhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                </li>
                                 <?php
                                  }
                                 ?>
 
 
-                                <li><a href="{{URL::to('/gio-hang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                <li><a href="{{URL::to('/gio-hang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                </li>
 
                                 @php
-                                    $customer_id = Session::get('customer_id');
-                                    if($customer_id!=NULL){
-                                    @endphp
+                                $customer_id = Session::get('customer_id');
+                                if($customer_id!=NULL){
+                                @endphp
 
-                                    <li>
-                                        <a href="{{URL::to('history')}}"><i class="fa fa-bell"></i> Lịch sử đơn hàng </a>
+                                <li>
+                                    <a href="{{URL::to('history')}}"><i class="fa fa-bell"></i> Lịch sử đơn hàng </a>
 
-                                    </li>
+                                </li>
 
 
-                                   @php
-                                    }
-                                   @endphp
+                                @php
+                                }
+                                @endphp
 
                                 <?php
                                 $customer_id = Session::get('customer_id');
                                 if($customer_id!=NULL){
                                     ?>
 
-                                    <li>
-                                        <a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất : </a>
+                                <li>
+                                    <a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất :
+                                    </a>
 
-                                         {{Session::get('customer_name')}}
+                                    {{Session::get('customer_name')}}
 
-                                    </li>
+                                </li>
 
 
-                                    <?php
+                                <?php
                                 }else{
                                    ?>
-                                   <li><a href="{{URL::to('/dang-nhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-                                   <?php
+                                <li><a href="{{URL::to('/dang-nhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                <?php
                                }
                                ?>
-
 
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!--/header-middle-->
+        </div>
+        <!--/header-middle-->
 
-        <div class="header-bottom"><!--header-bottom-->
+        <div class="header-bottom">
+            <!--header-bottom-->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -163,42 +184,51 @@
                                 <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach($category as $key => $danhmuc)
-                                        <li><a href="{{URL::to('/danh-muc/'.$danhmuc->slug_category_product)}}">{{$danhmuc->category_name}}</a></li>
+                                        <li><a
+                                                href="{{URL::to('/danh-muc/'.$danhmuc->slug_category_product)}}">{{$danhmuc->category_name}}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                       @foreach($category_post as $key => $danhmucbaiviet)
-                                        <li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
-                                    @endforeach
+                                        @foreach($category_post as $key => $danhmucbaiviet)
+                                        <li><a
+                                                href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a>
+                                        </li>
+                                        @endforeach
 
                                     </ul>
                                 </li>
                                 <li><a href="{{URL::to('/gio-hang')}}">Giỏ hàng</a></li>
-                                <li><a href="{{URL::to('/video-shop')}}">Videos Shop</a></li>
+                                <li><a href="{{URL::to('/video-shop')}}">Video</a></li>
                                 <li><a href="{{URL::to('/lien-he')}}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <form action="{{URL::to('/tim-kiem')}}"  method="POST">
+                        <form action="{{URL::to('/tim-kiem')}}" method="POST">
                             {{csrf_field()}}
-                        <div class="search_box">
+                            <div class="search_box">
 
-                            <input type="text" name="keywords_submit" id="keywords" placeholder="Tìm kiếm sản phẩm"/>
+                                <input type="text" name="keywords_submit" id="keywords"
+                                    placeholder="Tìm kiếm sản phẩm" />
 
-                           <input type="submit" style="margin-top:0;" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
+                                <input type="submit" style="margin-top:0;" name="search_items"
+                                    class="btn btn-primary btn-sm" value="Tìm kiếm">
 
-                        </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div><!--/header-bottom-->
-    </header><!--/header-->
+        </div>
+        <!--/header-bottom-->
+    </header>
+    <!--/header-->
 
-    <section id="slider"><!--slider-->
+    <section id="slider">
+        <!--slider-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -209,16 +239,19 @@
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
                         </ol>
                         <style type="text/css">
-                            img.img.img-responsive.img-slider {
-                                height: 350px;
-                            }
+                        img.img.img-responsive.img-slider {
+                            height: 350px;
+                        }
                         </style>
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="col-sm-6">
                                     <h2>KAROFI ĐẤU TRÍ CÙNG “BỐ GIÀ” TRẤN THÀNH: CUỘC ĐUA TÌM KIẾM CHUYÊN GIA SIÊU THẤU
                                         HIỂU NƯỚC</h2>
-                                    <p>Vượt qua hàng trăm “đối thủ” nặng ký, ly nước từ Máy lọc nước Karofi đã xuất sắc trở thành ly nước chất lượng nhất nhờ được lọc với công nghệ Smax nhân đôi công suất, tạo ra nguồn nước Tinh Khiết đạt chuẩn quốc gia uống trực tiếp tại vòi. aliqua. </p>
+                                    <p>Vượt qua hàng trăm “đối thủ” nặng ký, ly nước từ Máy lọc nước Karofi đã xuất sắc
+                                        trở thành ly nước chất lượng nhất nhờ được lọc với công nghệ Smax nhân đôi công
+                                        suất, tạo ra nguồn nước Tinh Khiết đạt chuẩn quốc gia uống trực tiếp tại vòi.
+                                        aliqua. </p>
 
                                 </div>
                                 <div class="col-sm-6">
@@ -230,8 +263,10 @@
                             <div class="item">
                                 <div class="col-sm-6">
                                     <h2>Bảo vệ toàn diện <br>CHO GIA ĐÌNH THÂN YÊU</h2>
-                                    <p>Trung tâm bảo hành của Karofi trên toàn quốc sở hữu Kỹ thuật viên được đào tạo chuyên nghiệp
-                                     với linh kiện chính hãng, tốc độ xử lý nhanh đảm bảo khách hàng luôn an tâm trong suốt quá trình sử dụng </p>
+                                    <p>Trung tâm bảo hành của Karofi trên toàn quốc sở hữu Kỹ thuật viên được đào tạo
+                                        chuyên nghiệp
+                                        với linh kiện chính hãng, tốc độ xử lý nhanh đảm bảo khách hàng luôn an tâm
+                                        trong suốt quá trình sử dụng </p>
 
                                 </div>
                                 <div class="col-sm-6">
@@ -243,9 +278,10 @@
                             <div class="item ">
                                 <div class="col-sm-6">
                                     <h2>CHÀO HÈ CỰC COOL: ĐẶT TRƯỚC RƯỚC QUÀ HỜI!</h2>
-                                    <p>"Mở bát" chào hè cùng Karofi với máy lọc nước nóng lạnh thế hệ mới Karofi <br> Đăng kí đặt trước ngay hôm nay
-                                để trở thành 300 khách hàng đầu tiên</p>
-                                </p>
+                                    <p>"Mở bát" chào hè cùng Karofi với máy lọc nước nóng lạnh thế hệ mới Karofi <br>
+                                        Đăng kí đặt trước ngay hôm nay
+                                        để trở thành 300 khách hàng đầu tiên</p>
+                                    </p>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{{url('public/frontend/images/unnamed.jpg')}}" class="girl img-responsive"
@@ -266,7 +302,8 @@
                 </div>
             </div>
         </div>
-    </section><!--/slider-->
+    </section>
+    <!--/slider-->
 
     <section>
         <div class="container">
@@ -274,18 +311,20 @@
                 <div class="col-sm-3">
                     <div class="left-sidebar">
                         <h2>Danh mục sản phẩm</h2>
-                        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
 
-                          @foreach($category as $key => $cate)
+                            @foreach($category as $key => $cate)
 
 
                             <div class="panel panel-default">
 
-                               @if($cate->category_parent==0)
+                                @if($cate->category_parent==0)
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
 
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#{{$cate->slug_category_product}}">
+                                        <a data-toggle="collapse" data-parent="#accordian"
+                                            href="#{{$cate->slug_category_product}}">
                                             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                                             {{$cate->category_name}}
                                         </a>
@@ -297,49 +336,32 @@
                                     <div class="panel-body">
                                         <ul>
                                             @foreach($category as $key => $cate_sub)
-                                                @if($cate_sub->category_parent==$cate->category_id)
-                                                    <li><a href="{{URL::to('/danh-muc/'.$cate_sub->slug_category_product)}}">{{$cate_sub->category_name}}</a></li>
-                                                @endif
+                                            @if($cate_sub->category_parent==$cate->category_id)
+                                            <li><a
+                                                    href="{{URL::to('/danh-muc/'.$cate_sub->slug_category_product)}}">{{$cate_sub->category_name}}</a>
+                                            </li>
+                                            @endif
                                             @endforeach
                                         </ul>
                                     </div>
                                 </div>
-                            @endif
+                                @endif
 
 
 
                             </div>
 
 
-                        @endforeach
+                            @endforeach
 
-                        </div><!--/category-products-->
-
-
-
-                        <div class="brands_products"><!--brands_products-->
-                            <h2>Sản phẩm đã xem</h2>
-                            <div class="brands-name ">
-
-                                <div id="row_viewed" class="row">
-
-                                </div>
-
-                            </div>
-                        </div><!--/brands_products-->
-
-
-
-
-
-
+                        </div>
 
                     </div>
                 </div>
 
                 <div class="col-sm-9 padding-right">
 
-                   @yield('content')
+                    @yield('content')
 
                 </div>
             </div>
@@ -362,8 +384,10 @@
                             <h2>tin tức</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 @foreach($category_post as $key => $danhmucbaiviet)
-                                <li><a href="{{url::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
-                            @endforeach
+                                <li><a
+                                        href="{{url::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a>
+                                </li>
+                                @endforeach
 
                             </ul>
                         </div>
@@ -376,7 +400,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2> <a href="{{url::to('/video-shop')}}"> videos shop</a></h2>
+                            <h2> <a href="{{url::to('/video-shop')}}"> video</a></h2>
 
                         </div>
                     </div>
@@ -402,8 +426,9 @@
 
     </footer>
     <!--/Footer-->
+    <!--/Footer-->
 
-
+  
     <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
     <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
@@ -423,26 +448,26 @@
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 <!--video-->
     <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.5.2.js"></script>
-    <script src="{{asset('public/frontend/js/script.js')}}"></script>
-
+    <script src="{{asset('public/frontend/js/script.js')}}"></script>   
+   
     <div id="fb-root"></div>
-
     <script>
-        //==Active menu
-        var path = window.location.pathname;
-        path = path.replace(/\/$/, "");
-        path = decodeURIComponent(path);
-        $(".mainmenu ul li a").removeClass('active');
-        $(".mainmenu ul li a").each(function () {
-            var href = $(this).attr('href');
-            console.log('href: ', href, path, path.substring(0, href.length))
-            if (href.indexOf(path) !== -1) {
-                $(this).addClass('active');
-                $(this).parents('li.dropdown').find('>a').addClass('active');
-            }
-        });
-        //==End Active menu
+    //==Active menu
+    var path = window.location.pathname;
+    path = path.replace(/\/$/, "");
+    path = decodeURIComponent(path);
+    $(".mainmenu ul li a").removeClass('active');
+    $(".mainmenu ul li a").each(function() {
+        var href = $(this).attr('href');
+        console.log('href: ', href, path, path.substring(0, href.length))
+        if (href.indexOf(path) !== -1) {
+            $(this).addClass('active');
+            $(this).parents('li.dropdown').find('>a').addClass('active');
+        }
+    });
+    //==End Active menu
     </script>
+
 
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=2339123679735877&autoLogAppEvents=1"></script>
 		<!-- Load Facebook SDK for JavaScript -->
@@ -483,7 +508,7 @@
 
               steps:10000,
               values: [ {{$min_price}}, {{$max_price}} ],
-
+             
               slide: function( event, ui ) {
                 $( "#amount_start" ).val(ui.values[ 0 ]).simpleMoneyFormat();
                 $( "#amount_end" ).val(ui.values[ 1 ]).simpleMoneyFormat();
@@ -499,22 +524,22 @@
             $( "#amount_start" ).val($( "#slider-range" ).slider("values",0)).simpleMoneyFormat();
             $( "#amount_end" ).val($( "#slider-range" ).slider("values",1)).simpleMoneyFormat();
 
-        });
+        }); 
 </script>
 <script type="text/javascript">
         $(document).ready(function(){
 
             $('#sort').on('change',function(){
 
-                var url = $(this).val();
+                var url = $(this).val(); 
                 // alert(url);
-                  if (url) {
+                  if (url) { 
                       window.location = url;
                   }
                 return false;
             });
 
-        });
+        }); 
 </script>
 
 <script type="text/javascript">
@@ -526,11 +551,11 @@
              // var data = JSON.parse(localStorage.getItem('product_viewed'));
 
              // data.reverse();
-
+             
 
             //  document.getElementById('row_wishlist').style.overflow = 'scroll';
             //  document.getElementById('row_wishlist').style.height = '500px';
-
+            
             //  for(i=0;i<data.length;i++){
 
             //     var name = data[i].name;
@@ -546,10 +571,10 @@
             var name = document.getElementById('product_viewed'+id).value;
 
             var newItem = {
-
+           
                 'name': name,
                 'id':id
-
+           
             }
             if(localStorage.getItem('product_viewed')==null){
                localStorage.setItem('product_viewed', '[]');
@@ -562,12 +587,12 @@
 
     }
 
-    product_viewed();
+    //product_viewed();
 </script>
 <script type="text/javascript">
 
      function view(){
-
+        
 
          if(localStorage.getItem('data')!=null){
 
@@ -577,7 +602,7 @@
 
              document.getElementById('row_wishlist').style.overflow = 'scroll';
              document.getElementById('row_wishlist').style.height = '500px';
-
+            
              for(i=0;i<data.length;i++){
 
                 var name = data[i].name;
@@ -593,10 +618,10 @@
     }
 
     view();
-
+   
 
    function add_wistlist(clicked_id){
-
+       
         var id = clicked_id;
         var name = document.getElementById('wishlist_productname'+id).value;
         var price = document.getElementById('wishlist_productprice'+id).value;
@@ -631,12 +656,14 @@
            $('#row_wishlist').append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+newItem.image+'"></div><div class="col-md-8 info_wishlist"><p>'+newItem.name+'</p><p style="color:#FE980F">'+newItem.price+'</p><a href="'+newItem.url+'">Đặt hàng</a></div>');
 
         }
-
+       
         localStorage.setItem('data', JSON.stringify(old_data));
 
-
+       
    }
 </script>
+
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -649,11 +676,11 @@
                 data:{cate_id:cate_id,_token:_token},
                 success:function(data){
                     $('#tabs_product').html(data);
-
+                   
                 }
 
-            });
-
+            }); 
+            
         $('.tabs_pro').click(function(){
 
             var cate_id = $(this).data('id');
@@ -661,19 +688,19 @@
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:'{{url('/product-tabs')}}',
-                method:"POST",
+                method:"POST",  
                 data:{cate_id:cate_id,_token:_token},
 
                 success:function(data){
                     $('#tabs_product').html(data);
                 }
 
-            });
+            }); 
 
         });
-
-
-
+       
+      
+         
     });
 </script>
 
@@ -731,12 +758,12 @@
             }
            }
     });
-
+          
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-
+        
         load_comment();
 
         function load_comment(){
@@ -747,7 +774,7 @@
               method:"POST",
               data:{product_id:product_id, _token:_token},
               success:function(data){
-
+              
                 $('#comment_show').html(data);
               }
             });
@@ -762,7 +789,7 @@
               method:"POST",
               data:{product_id:product_id,comment_name:comment_name,comment_content:comment_content, _token:_token},
               success:function(data){
-
+                
                 $('#notify_comment').html('<span class="text text-success">Thêm bình luận thành công, bình luận đang chờ duyệt</span>');
                 load_comment();
                 $('#notify_comment').fadeOut(9000);
@@ -774,7 +801,7 @@
     });
 </script>
 <script type="text/javascript">
-
+    
         $('.xemnhanh').click(function(){
             var product_id = $(this).data('id_product');
             var _token = $('input[name="_token"]').val();
@@ -796,7 +823,7 @@
               }
             });
         });
-
+   
 </script>
 <script type="text/javascript">
     $('#keywords').keyup(function(){
@@ -811,21 +838,21 @@
               method:"POST",
               data:{query:query, _token:_token},
               success:function(data){
-               $('#search_ajax').fadeIn();
+               $('#search_ajax').fadeIn();  
                 $('#search_ajax').html(data);
               }
              });
 
             }else{
 
-                $('#search_ajax').fadeOut();
+                $('#search_ajax').fadeOut();  
             }
     });
 
-    $(document).on('click', '.li_search_ajax', function(){
-        $('#keywords').val($(this).text());
-        $('#search_ajax').fadeOut();
-    });
+    $(document).on('click', '.li_search_ajax', function(){  
+        $('#keywords').val($(this).text());  
+        $('#search_ajax').fadeOut();  
+    }); 
 </script>
 
 <script type="text/javascript">
@@ -845,11 +872,11 @@
                 });
             }
 
-        });
+        });  
       });
 </script>
     <script type="text/javascript">
-
+      
         $(document).on('click','.watch-video',function(){
             var video_id = $(this).attr('id');
             var _token = $('input[name="_token"]').val();
@@ -861,7 +888,7 @@
                 success:function(data){
                     $('#video_title').html(data.video_title);
                     $('#video_link').html(data.video_link);
-                    $('#video_desc').html(data.video_desc);
+                    $('#video_desc').html(data.video_desc); 
                     var playerYT = new vlitejs({
                         selector: '#my_yt_video',
                         options: {
@@ -902,13 +929,13 @@
                           // callback function here
                         }
                     });
-
+                   
                 }
 
-            });
+            }); 
         });
     </script>
-
+   
     <script type="text/javascript">
 
           $(document).ready(function(){
@@ -934,7 +961,7 @@
                         var shipping_phone = $('.shipping_phone').val();
                         var shipping_notes = $('.shipping_notes').val();
                         var shipping_method = $('.payment_select').val();
-
+                      
                         var order_fee = $('.order_fee').val();
                         var order_coupon = $('.order_coupon').val();
                         var _token = $('input[name="_token"]').val();
@@ -948,7 +975,7 @@
                             }
                         });
 
-                        // window.setTimeout(function(){
+                        // window.setTimeout(function(){ 
                         //     location.reload();
                         // } ,3000);
 
@@ -956,13 +983,13 @@
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");
 
                       }
-
+              
                 });
 
-
+               
             });
         });
-
+    
 
     </script>
     <script type="text/javascript">
@@ -1007,13 +1034,13 @@
                     });
                 }
 
-
+                
             });
         });
     </script>
     <!--add to  cart quickview-->
      <script type="text/javascript">
-
+       
             $(document).on('click','.add-to-cart-quickview',function(){
 
                 var id = $(this).data('id_product');
@@ -1038,19 +1065,19 @@
                         },
                         success:function(){
                             $("#beforesend_quickview").html("<p class='text text-success'>Sản phẩm đã thêm vào giỏ hàng</p>");
-
+                          
 
                         }
 
                     });
                 }
 
-
+                
             });
             $(document).on('click','.redirect-cart',function(){
                 window.location.href = "{{url('/gio-hang')}}";
             });
-
+        
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -1059,7 +1086,7 @@
             var ma_id = $(this).val();
             var _token = $('input[name="_token"]').val();
             var result = '';
-
+           
             if(action=='city'){
                 result = 'province';
             }else{
@@ -1070,12 +1097,12 @@
                 method: 'POST',
                 data:{action:action,ma_id:ma_id,_token:_token},
                 success:function(data){
-                   $('#'+result).html(data);
+                   $('#'+result).html(data);     
                 }
             });
         });
         });
-
+          
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -1092,15 +1119,15 @@
                     method: 'POST',
                     data:{matp:matp,maqh:maqh,xaid:xaid,_token:_token},
                     success:function(){
-                       location.reload();
+                       location.reload(); 
                     }
                     });
-                }
+                } 
         });
     });
     </script>
-
-
-
+    
+    <script src="{{asset('public/frontend/js/contactCall.js')}}"></script>
+  
 </body>
 </html>

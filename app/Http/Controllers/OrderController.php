@@ -28,12 +28,14 @@ class OrderController extends Controller
 		return redirect()->back();
 
 	}
+	
 	public function update_qty(Request $request){
 		$data = $request->all();
 		$order_details = OrderDetails::where('product_id',$data['order_product_id'])->where('order_code',$data['order_code'])->first();
 		$order_details->product_sales_quantity = $data['order_qty'];
 		$order_details->save();
 	}
+
 	public function update_order_qty(Request $request){
 		//update order
 		$data = $request->all();
@@ -117,8 +119,8 @@ class OrderController extends Controller
 
 				$product = Product::find($product_id);
 				$product_quantity = $product->product_quantity;
-				$product_sold = $product->product_sold;
-				//them
+				// $product_sold = $product->product_sold;
+			
 				$product_price = $product->product_price;
 				$product_cost = $product->price_cost;
 				$now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
@@ -128,7 +130,7 @@ class OrderController extends Controller
 					if($key==$key2){
 						$pro_remain = $product_quantity - $qty;
 						$product->product_quantity = $pro_remain;
-						$product->product_sold = $product_sold + $qty;
+						// $product->product_sold = $product_sold + $qty;
 						$product->save();
 						//update doanh thu
 						$quantity+=$qty;
@@ -158,8 +160,6 @@ class OrderController extends Controller
 				$statistic_new->total_order = $total_order;
 				$statistic_new->save();
 			}
-
-
 
 		}
 
@@ -197,7 +197,7 @@ class OrderController extends Controller
 			if($coupon_condition==1){
 				$coupon_echo = $coupon_number.'%';
 			}elseif($coupon_condition==2){
-				$coupon_echo = number_format($coupon_number,0,',','.').'đ';
+				$coupon_echo = number_format($coupon_number,0,',','.').' VNĐ';
 			}
 		}else{
 			$coupon_condition = 2;
@@ -308,10 +308,10 @@ class OrderController extends Controller
 			<tr>
 			<td>'.$product->product_name.'</td>
 			<td>'.$product_coupon.'</td>
-			<td>'.number_format($product->product_feeship,0,',','.').'đ'.'</td>
+			<td>'.number_format($product->product_feeship,0,',','.').' VNĐ'.'</td>
 			<td>'.$product->product_sales_quantity.'</td>
-			<td>'.number_format($product->product_price,0,',','.').'đ'.'</td>
-			<td>'.number_format($subtotal,0,',','.').'đ'.'</td>
+			<td>'.number_format($product->product_price,0,',','.').' VNĐ'.'</td>
+			<td>'.number_format($subtotal,0,',','.').' VNĐ'.'</td>
 
 			</tr>';
 		}
@@ -326,8 +326,8 @@ class OrderController extends Controller
 		$output.= '<tr>
 		<td colspan="2">
 		<p>Tổng giảm: '.$coupon_echo.'</p>
-		<p>Phí ship: '.number_format($product->product_feeship,0,',','.').'đ'.'</p>
-		<p>Thanh toán : '.number_format($total_coupon + $product->product_feeship,0,',','.').'đ'.'</p>
+		<p>Phí ship: '.number_format($product->product_feeship,0,',','.').' VNĐ'.'</p>
+		<p>Thanh toán : '.number_format($total_coupon + $product->product_feeship,0,',','.').' VNĐ'.'</p>
 		</td>
 		</tr>';
 		$output.='				

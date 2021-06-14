@@ -13,6 +13,7 @@ class Feeship extends Model
     protected $primaryKey = 'fee_id';
  	protected $table = 'tbl_feeship';
 
+	 //Hàm Feeship thuộc về 1 model thành phố với mã id thành phố tương ứng với mà fee_matp của tbl_feeship
  	public function city(){
  		return $this->belongsTo('App\City', 'fee_matp');
  	}

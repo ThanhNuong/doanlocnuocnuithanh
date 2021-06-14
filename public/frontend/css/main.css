@@ -332,12 +332,6 @@ ul.sub-menu {
     z-index: 999;
 }
 
-.dropdown ul.sub-menu li .active {
-    color: #FDB45E;
-    padding-left: 0;
-}
-
-
 .navbar-nav li ul.sub-menu li {
     padding: 10px 20px 0;
 }
@@ -930,7 +924,7 @@ h2.title {
     transition: height 500ms ease 0s;
     width: 100%;
     display: block;
-    opacity: ;
+    opacity:inherit ;
 }
 
 .single-products:hover .product-overlay {
@@ -1113,8 +1107,6 @@ h2.title {
 .recommended-item-control i:hover {
     background: #ccccc6;
 }
-
-.recommended_items h2 {}
 
 .our_partners {
     overflow: hidden;
@@ -1504,10 +1496,6 @@ h2.title {
     overflow: hidden;
 }
 
-.login-form {}
-
-.signup-form {}
-
 .login-form h2,
 .signup-form h2 {
     color: #696763;
@@ -1825,7 +1813,6 @@ h2.title {
     margin-right: 10px
 }
 
-.user_info>li>span {}
 
 .user_info input,
 select,
@@ -1958,9 +1945,9 @@ textarea {
 .shopper-info p,
 .bill-to p,
 .order-message p {
-    color: #696763;
+   color: #000;
     font-size: 20px;
-    font-weight: 300
+    font-weight: 600
 }
 
 
@@ -2075,7 +2062,6 @@ textarea {
     margin-bottom: 17px;
 }
 
-.single-blog-post>a {}
 
 .blog-post-area .single-blog-post a img {
     border: 1px solid #F7F7F0;
@@ -2654,3 +2640,19 @@ button.redirect-cart:hover,
     height: auto;
     position: relative !important;
 }
+
+.panel-default>.panel-heading{
+    font-size: 18px;
+    font-family: 'Lato';
+    font-weight: 700;
+}
+
+table.table.table-striped.b-t.b-light{
+    font-family: 'Lato';
+}
+
+.bai-viet:hover{
+    color: none;
+    background: none;
+}
+

@@ -42,17 +42,17 @@ class ContactController extends Controller
     	$contact = Contact::find($info_id);
     	$contact->info_contact = $data['info_contact'];	
     	$contact->info_map = $data['info_map'];
-    	$contact->info_fanpage = $data['info_fanpage'];	
-    	$get_image = $request->file('info_image');
-    	$path = 'public/uploads/contact/';
-    	if($get_image){
-    		unlink($path.$contact->info_logo);
-    		$get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.',$get_name_image));
-            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move($path,$new_image);
-            $contact->info_logo = $new_image;
-    	}
+    	// $contact->info_fanpage = $data['info_fanpage'];	
+    	// $get_image = $request->file('info_image');
+    	// $path = 'public/uploads/contact/';
+    	// if($get_image){
+    	// 	unlink($path.$contact->info_logo);
+    	// 	$get_name_image = $get_image->getClientOriginalName();
+        //     $name_image = current(explode('.',$get_name_image));
+        //     $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+        //     $get_image->move($path,$new_image);
+        //     $contact->info_logo = $new_image;
+    	// }
 
     	$contact->save();
     	return redirect()->back()->with('message','Cập nhật thông tin website thành công');

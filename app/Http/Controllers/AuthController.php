@@ -18,7 +18,7 @@ class AuthController extends Controller
     }
     public function logout_auth(){
         Auth::logout();
-        return redirect('/login-auth')->with('message','Đăng xuất authentication thành công');
+        return redirect('/login-auth')->with('message','Đăng xuất thành công');
     }
     public function login(Request $request){
         $this->validate($request,[
@@ -30,7 +30,7 @@ class AuthController extends Controller
         if(Auth::attempt(['admin_email'=>$request->admin_email,'admin_password'=>$request->admin_password ])){
             return redirect('/dashboard');
         }else{
-            return redirect('/login-auth')->with('message','Lỗi đăng nhập authentication');
+            return redirect('/login-auth')->with('message','Lỗi đăng nhập');
         }
 
     }
@@ -47,6 +47,8 @@ class AuthController extends Controller
 		return redirect('/register-auth')->with('message','Đăng ký thành công');
 
     }
+
+    //function validation: điều kiện kiểm tra
     public function validation($request){
     	return $this->validate($request,[
     		'admin_name' => 'required|max:255', 

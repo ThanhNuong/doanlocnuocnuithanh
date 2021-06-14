@@ -5,7 +5,7 @@
         <div class="panel-heading">
             Liệt kê thương hiệu sản phẩm
         </div>
-        
+
         <div class="table-responsive">
             <?php
                             $message = Session::get('message');
@@ -17,7 +17,7 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                        
+                        <th>Thứ tự</th>
                         <th>Tên thương hiệu</th>
                         <th>Brand Slug</th>
                         <th>Hiển thị</th>
@@ -26,8 +26,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                    $i = 0;
+                    @endphp
                     @foreach($all_brand_product as $key => $brand_pro)
+                    @php
+                    $i++;
+                    @endphp
+
                     <tr>
+                        <td><i>{{$i}}</i></label></td>
                         <td>{{ $brand_pro->brand_name }}</td>
                         <td>{{ $brand_pro->brand_slug }}</td>
                         <td><span class="text-ellipsis">

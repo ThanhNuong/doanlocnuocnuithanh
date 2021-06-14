@@ -5,7 +5,7 @@
         <div class="panel-heading">
             Liệt kê mã giảm giá
         </div>
-        
+
         <div class="table-responsive">
             <?php
       $message = Session::get('message');
@@ -18,27 +18,31 @@
                 <thead>
                     <tr>
 
-
-                        <th>Tên mã giảm giá</th>
+                        <th>Thứ tự</th>
+                        <th>Tên mã</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Mã giảm giá</th>
-                        <th>Số lượng giảm giá</th>
-                        <th>Điều kiện giảm giá</th>
+                        <th>Mã giảm </th>
+                        <th>Số lượng</th>
+                        <th>Điều kiện giảm</th>
                         <th>Số giảm</th>
                         <th>Tình trạng</th>
-                        <th>Hết hạn</th>
+                        <th>Thời hạn</th>
                         <td>Quản lý</td>
-                        <th>Gửi mã</th>
-
-
 
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                    $i = 0;
+                    @endphp
                     @foreach($coupon as $key => $cou)
-                    <tr>
+                    @php
+                    $i++;
+                    @endphp
 
+                    <tr>
+                        <td><i>{{$i}}</i></label></td>
                         <td>{{ $cou->coupon_name }}</td>
                         <td>{{ $cou->coupon_date_start }}</td>
                         <td>{{ $cou->coupon_date_end }}</td>
@@ -88,11 +92,11 @@
                         </td>
                         <td>
 
-                            @if($cou->coupon_date_end>=$today && $cou->coupon_date_start<=$today)
-                            <span style="color:green">Còn hạn</span>
-                            @else
-                            <span style="color:red">Đã hết hạn</span>
-                            @endif
+                            @if($cou->coupon_date_end>=$today && $cou->coupon_date_start<=$today) <span
+                                style="color:green">Còn hạn</span>
+                                @else
+                                <span style="color:red">Đã hết hạn</span>
+                                @endif
 
 
                         </td>
@@ -104,30 +108,7 @@
                                 <i class="fa fa-times text-danger text"></i>
                             </a>
                         </td>
-                        <td>
-
-                            <!-- <p><a href="{{url('/send-coupon-vip', [ 
-
-            'coupon_time'=> $cou->coupon_time,
-            'coupon_condition'=> $cou->coupon_condition,
-            'coupon_number'=> $cou->coupon_number,
-            'coupon_code'=> $cou->coupon_code
-
-
-          ])}}" class="btn btn-primary" style="margin:5px 0;">Gửi giảm giá khách vip</a></p> -->
-                            <p><a href="{{url('/send-coupon',[ 
-
-           
-            'coupon_time'=> $cou->coupon_time,
-            'coupon_condition'=> $cou->coupon_condition,
-            'coupon_number'=> $cou->coupon_number,
-            'coupon_code'=> $cou->coupon_code
-
-
-          ])}}" class="btn btn-default">Gửi giảm giá</a></p>
-
-
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>

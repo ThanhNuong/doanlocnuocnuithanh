@@ -6,7 +6,7 @@
 	<title>Quên mật khẩu</title>
 </head>
 <body>
-	<p>Click vào {{$data['body']}} để reset password</p>
+	<p>Click vào {{$data['body']}} để lấy lại mật khẩu</p>
 </body>
 </html>
 

@@ -37,7 +37,7 @@ class UserController extends Controller
     }
     public function delete_user_roles($admin_id){
         if(Auth::id()==$admin_id){
-            return redirect()->back()->with('message','Bạn không được quyền xóa chính mình');
+            return redirect()->back()->with('message','Không được quyền xóa!');
         }
         $admin = Admin::find($admin_id);
 
@@ -45,13 +45,13 @@ class UserController extends Controller
             $admin->roles()->detach();
             $admin->delete();
         }
-        return redirect()->back()->with('message','Xóa user thành công');
+        return redirect()->back()->with('message','Xóa user thành công!');
 
     }
     public function assign_roles(Request $request){
 
         if(Auth::id()==$request->admin_id){
-            return redirect()->back()->with('message','Bạn không được phân quyền chính mình');
+            return redirect()->back()->with('message','Không có quyền phân quyền!');
         }
 
         $user = Admin::where('admin_email',$request->admin_email)->first();
@@ -66,7 +66,7 @@ class UserController extends Controller
         if($request->admin_role){
            $user->roles()->attach(Roles::where('name','admin')->first());     
         }
-        return redirect()->back()->with('message','Cấp quyền thành công');
+        return redirect()->back()->with('message','Cấp quyền thành công!');
     }
 
     public function store_users(Request $request){
@@ -78,7 +78,7 @@ class UserController extends Controller
         $admin->admin_password = md5($data['admin_password']);
         $admin->roles()->attach(Roles::where('name','user')->first());
         $admin->save();
-        Session::put('message','Thêm users thành công');
+        Session::put('message','Thêm users thành công!');
         return Redirect::to('users');
     }
   

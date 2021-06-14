@@ -16,10 +16,12 @@ class Admin extends Authenticatable
     protected $primaryKey = 'admin_id';
  	protected $table = 'tbl_admin';
 
+	 //admin có nhiều roles
  	public function roles(){
  		return $this->belongsToMany('App\Roles');
  	}
 
+	 //lấy cột password (này đã thay password->admin_password trong vender)
  	public function getAuthPassword(){
  		return $this->admin_password;
  	}

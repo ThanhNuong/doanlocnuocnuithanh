@@ -163,7 +163,7 @@ public function calculate_fee(Request $request){
         Session::save();
       }
     }else{ 
-      Session::put('fee',25000);
+      Session::put('fee',100000);
       Session::save();
     }
   }
@@ -252,35 +252,9 @@ public function checkout(Request $request){
   $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
   $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
   $city = City::orderby('matp','ASC')->get();
-
   return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('category_post',$category_post);
 }
-public function save_checkout_customer(Request $request){
- $data = array();
- $data['shipping_name'] = $request->shipping_name;
- $data['shipping_phone'] = $request->shipping_phone;
- $data['shipping_email'] = $request->shipping_email;
- $data['shipping_notes'] = $request->shipping_notes;
- $data['shipping_address'] = $request->shipping_address;
 
- $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
-
- Session::put('shipping_id',$shipping_id);
-
- return Redirect::to('/payment');
-}
-public function payment(Request $request){
-        //seo 
-  $meta_desc = "Đăng nhập thanh toán"; 
-  $meta_keywords = "Đăng nhập thanh toán";
-  $meta_title = "Đăng nhập thanh toán";
-  $url_canonical = $request->url();
-        //--seo 
-  $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-  $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-  return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
-
-}
 public function order_place(Request $request){
         //insert payment_method
         //seo 
@@ -334,7 +308,7 @@ public function order_place(Request $request){
 public function logout_checkout(){
  Session::forget('customer_id');
  Session::forget('coupon');
-
+ Session::forget('cart');
  return Redirect::to('/dang-nhap');
 }
 public function login_customer(Request $request){

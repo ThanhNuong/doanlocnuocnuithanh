@@ -102,9 +102,9 @@ public function gio_hang(Request $request){
          //seo 
         
 
-    $meta_desc = "Giỏ hàng của bạn"; 
-    $meta_keywords = "Giỏ hàng Ajax";
-    $meta_title = "Giỏ hàng Ajax";
+    $meta_desc = "Giỏ hàng của bạn đã thêm vào"; 
+    $meta_keywords = "Giỏ hàng";
+    $meta_title = "Giỏ hàng";
     $url_canonical = $request->url();
         //--seo
     $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 

@@ -136,23 +136,12 @@ class VideoController extends Controller
 
     				 <tr>
     				 <td>'.$i.'</td>
-			           <td contenteditable data-video_id="'.$vid->video_id.'" data-video_type="video_title" class="video_edit" id="video_title_'.$vid->video_id.'">'.$vid->video_title.'</td>
+					 <td> '.$vid->video_title.'</td>
+					 <td> '.$vid->video_link.'</td>
+					 <td> '.$vid->video_desc.'</td>
+					 <td><button class="btn btn-xs- btn success">	Xem video</td>
+					 <td><button class="btn btn-xs- btn success">	Xóa video</td>
 
-			           <td contenteditable data-video_id="'.$vid->video_id.'" data-video_type="video_slug" class="video_edit" id="video_slug_'.$vid->video_id.'">'.$vid->video_slug.'</td>
-
-			      		<td>
-			      		<img src="'.url('public/uploads/videos/'.$vid->video_image).'" class="img-thumbnail" width="80" height="80">
-
-			      		 <input type="file" class="file_img_video" data-video_id="'.$vid->video_id.'" id="file-video-'.$vid->video_id.'" name="file" accept="image/*" />
-
-			      		</td>
-
-			           <td contenteditable data-video_id="'.$vid->video_id.'" data-video_type="video_link" class="video_edit" id="video_link_'.$vid->video_id.'">https://youtu.be/'.$vid->video_link.'
-			           </td>
-			           <td contenteditable data-video_id="'.$vid->video_id.'" data-video_type="video_desc" class="video_edit" id="video_desc_'.$vid->video_id.'">'.$vid->video_desc.'</td>
-
-			           <td><iframe width="200" height="200" src="https://www.youtube.com/embed/'.$vid->video_link.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-			           <td><button type="button" data-video_id="'.$vid->video_id.'"  class="btn btn-xs btn-danger btn-delete-video">Xóa video</button></td>
 			         </tr>
                                     
 

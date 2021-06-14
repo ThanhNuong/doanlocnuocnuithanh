@@ -195,15 +195,6 @@ foreach($category_name as $key => $val){
 return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('max_price_range',$max_price_range)->with('min_price_range',$min_price_range);
 }
 
-public function export_csv(){
-    return Excel::download(new ExcelExports , 'category_product.xlsx');
-}
-public function import_csv(Request $request){
-    $path = $request->file('file')->getRealPath();
-    Excel::import(new ExcelImports, $path);
-    return back();
-}
-
 public function product_tabs(Request $request){
 
     $data = $request->all();

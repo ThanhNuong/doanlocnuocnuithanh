@@ -157,7 +157,7 @@
               Không mã
               @endif
             </td>
-            <td>{{number_format($details->product_feeship ,0,',','.')}}đ</td>
+            <td>{{number_format($details->product_feeship ,0,',','.')}} VNĐ</td>
             <td>
 
               <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
@@ -175,9 +175,9 @@
               @endif
 
             </td>
-            <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
-            <td>{{number_format($details->product->price_cost ,0,',','.')}}đ</td>
-            <td>{{number_format($subtotal ,0,',','.')}}đ</td>
+            <td>{{number_format($details->product_price ,0,',','.')}} VNĐ</td>
+            <td>{{number_format($details->product->price_cost ,0,',','.')}} VNĐ</td>
+            <td>{{number_format($subtotal ,0,',','.')}} VNĐ</td>
           </tr>
           @endforeach
           <tr>
@@ -193,14 +193,14 @@
               @endphp
               @else 
               @php
-              echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').'k'.'</br>';
+              echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').' VNĐ'.'</br>';
               $total_coupon = $total + $details->product_feeship - $coupon_number ;
 
               @endphp
               @endif
 
-              Phí ship : {{number_format($details->product_feeship,0,',','.')}}đ</br> 
-              Thanh toán: {{number_format($total_coupon,0,',','.')}}đ 
+              Phí ship : {{number_format($details->product_feeship,0,',','.')}} VNĐ</br> 
+              Thanh toán: {{number_format($total_coupon,0,',','.')}} VNĐ
           
             </td>
           </tr>
